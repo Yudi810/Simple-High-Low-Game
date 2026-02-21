@@ -6,7 +6,7 @@ class LifeSystem:
         pass
     def game_over(self):
         pass
-    def status(self):
+    def status(self): #interchangeable with an isinstance check in the main loop
         return ""
 class NormalMode(LifeSystem):
     def __init__(self):
@@ -45,6 +45,7 @@ card_values = {
    "A": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7,
     "8": 8, "9": 9, "10": 10, "J": 11, "Q": 12, "K": 13
 }
+# Display cards
 all_spades = ["A♠", "2♠", "3♠", "4♠", "5♠", "6♠", "7♠", "8♠", "9♠", "10♠", "J♠", "Q♠", "K♠"]
 all_hearts = ["A♥", "2♥", "3♥", "4♥", "5♥", "6♥", "7♥", "8♥", "9♥", "10♥", "J♥", "Q♥", "K♥"]
 all_clubs = ["A♣", "2♣", "3♣", "4♣", "5♣", "6♣", "7♣", "8♣", "9♣", "10♣", "J♣", "Q♣", "K♣"]
@@ -86,7 +87,7 @@ while True:
     if not cards:
         print("\nNo more cards!\nCongratulations! You beat the game!")
         break
-    print("\n===Cards Remaining===")    
+    print("\nCards Remaining")    
     display_cards("Spades:   ", all_spades)
     display_cards("Hearts:   ", all_hearts)
     display_cards("Clubs:    ", all_clubs)
@@ -106,7 +107,7 @@ while True:
     #Game logic
     next_card = random.choice(cards)
     cards.remove(next_card)
-    current_value = card_values[current_card[:-1]]
+    current_value = card_values[current_card[:-1]] # Strip the card suite and then look up the value of card in card_values
     next_value = card_values[next_card[:-1]]
     if (guess == "higher" or guess == "h") and next_value >= current_value:
         score += 1
